@@ -1,0 +1,72 @@
+"1) Consider a table named orders with the following columns:
+order_id (integer)
+order_date (date)
+customer_id (integer)
+total_amount (decimal)"
+
+#Create DataBase:-
+CREATE DATABASE coapps;
+
+#Switch to the newly created database:-
+USE coapps;
+
+#Create the orders table:-
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    order_date DATE,
+    customer_id INT,
+    total_amount DECIMAL(10, 2)
+);
+
+#Insert some sample data into the orders table:-
+INSERT INTO orders (order_date, customer_id, total_amount) VALUES
+('2024-03-05', 1, 230.50),
+('2024-03-06', 2, 100.25),
+('2024-03-07', 1, 75.80),
+('2024-03-08', 3, 150.00),
+('2024-03-09', 2, 175.00),
+('2024-03-10', 1, 200.00);
+
+#Query to find the total amount of orders placed by each customer:-
+SELECT customer_id, SUM(total_amount) AS total_orders_amount
+FROM orders
+GROUP BY customer_id;
+
+
+
+"2) Consider two tables named students and courses with the following columns:
+
+ #students table:
+  student_id (integer)
+  student_name (varchar)
+  course_id (integer)
+
+ #courses table:
+  course_id (integer)
+  course_name (varchar)"
+
+#table creation:(students)
+CREATE TABLE students (student_id INTEGER PRIMARY KEY,student_name VARCHAR(),course_id INTEGER);
+
+#Insertion of values:-
+INSERT INTO students (student_id, student_name, course_id) VALUES
+(1, 'Jaswanth', 100),
+(2, 'RaghuRam', 101),
+(3, 'Bhanu', 100),
+(4, 'Venkat', 102),
+(5, 'Vasu', 101);
+
+#creation of table:(courses)
+CREATE TABLE courses (course_id INTEGER PRIMARY KEY,course_name VARCHAR());
+
+#Insertion of values:-
+INSERT INTO courses (course_id, course_name) VALUES 
+(100, 'Mathematics'),
+(101, 'Science'),
+(102, 'History'),
+(103, 'English');
+
+#Write an SQL query to list the names of students along with the courses they are enrolled in:-
+SELECT s.student_name, c.course_name
+FROM students s
+INNER JOIN courses c ON s.course_id = c.course_id;
